@@ -1,0 +1,30 @@
+[package]
+name = "sealpir"
+version = "0.1.0"
+authors = ["Sebastian Angel <sebs@cs.utexas.edu>"]
+
+[build-dependencies]
+gcc = "0.3.54"
+
+[dependencies]
+libc = "0.2.42"
+rand = "0.5.0"
+serde = "1.0.65"
+serde_derive = "1.0.65"
+
+[dev-dependencies]
+criterion = "0.2.3"
+serde_bytes = "0.10.4"
+
+[[bench]]
+name = "pir"
+harness = false
+
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = true
+codegen-units = 1
+panic = 'unwind'

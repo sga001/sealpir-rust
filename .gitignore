@@ -1,0 +1,6 @@
+Cargo.lock
+.clang-format
+sealpir_bindings/bin/
+sealpir_bindings/obj/
+target/
+deps/

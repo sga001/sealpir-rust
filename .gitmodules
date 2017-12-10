@@ -1,0 +1,3 @@
+[submodule "SealPIR"]
+	path = SealPIR
+	url = https://github.com/sga001/SealPIR.git
