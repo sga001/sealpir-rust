@@ -1,8 +1,6 @@
 extern crate gcc;
 extern crate cmake;
 
-use std::env;
-
 fn main() {
     gcc::Build::new()
         .file("sealpir/pir.cpp")
@@ -23,7 +21,7 @@ fn main() {
 
     // Compile and link SEAL
     let dst = cmake::Config::new("deps/SEAL_2.3.1/SEAL/")
-//        .define("CMAKE_BUILD_TYPE", "Release")
+        .define("CMAKE_BUILD_TYPE", "Release")
         .define("CMAKE_POSITION_INDEPENDENT_CODE", "ON")
         .build();
 
