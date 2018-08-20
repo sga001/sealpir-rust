@@ -2,41 +2,13 @@
 
 SealPIR is a research library and should not be used in production systems. SealPIR allows a client to download an element from a database stored by a server without revealing which element was downloaded. SealPIR was introduced in our [paper](https://eprint.iacr.org/2017/1142.pdf).
 
+SealPIR relies on SEAL v2.3.1. The rest of this README assumes that the SEAL v2.3.1 source code is placed in the folder 
+deps/SEAL_2.3.1 within this repository. You can get SEAL v2.3.1 from this [link](http://sealcrypto.org).
 
-SealPIR relies on SEAL. The rest of this README assumes that SEAL is installed in the folder deps/SEAL within this repository. See below for instructions on how to install SEAL.
-
-# Compiling SEAL
-
-SealPIR depends on SEAL v2.3.0-4 and a patch that exposes the substitution operator. You can get SEAL v2.3.0-4 from this [link](http://sealcrypto.org).
-
-Once you have downloaded SEAL, apply the patch SEAL_v2.3.0-4.patch (available in this repository) to it. Here are the exact steps. 
-
-We assume that you are in the SEAL directory, and that you have copied the patch to this directory.
-
-First, convert the SEAL directory into a git repo:
-
-```sh
-$ git init
-$ git add .
-$ git commit -m "SEAL v2.3.0-4"
-```
-Then, apply the patch:
-
-```sh
-$ git am SEAL_v2.3.0-4.patch
-```
-
-Finally, compile SEAL (NOTE: gcc-8 is not currently supported):
-
-```sh
-$ cd SEAL
-$ ./configure CXXFLAGS="-O3 -march=native -fPIC"
-$ make clean && make
-```
 
 # Compiling SealPIR-Rust
 
-SealPIR's Rust wrapper works with [Rust](https://www.rust-lang.org/) nightly (we have tested with Rust 1.28.0). It also depends on the C++ version of SealPIR (included as a submodule) and SEAL (see above).
+SealPIR's Rust wrapper works with [Rust](https://www.rust-lang.org/) nightly (we have tested with Rust 1.30.0). It also depends on the C++ version of SealPIR (included as a submodule) and SEAL (see above). We have tested these versions with g++ 8.1.0.
 
 To compile SealPIR-Rust just do:
 

@@ -1,26 +1,32 @@
 extern crate gcc;
+extern crate cmake;
+
 use std::env;
 
 fn main() {
     gcc::Build::new()
-        .file("SealPIR/pir.cpp")
-        .file("SealPIR/pir_server.cpp")
-        .file("SealPIR/pir_client.cpp")
+        .file("sealpir/pir.cpp")
+        .file("sealpir/pir_server.cpp")
+        .file("sealpir/pir_client.cpp")
         .file("sealpir-bindings/pir_rust.cpp")
         .include("sealpir-bindings/")
-        .include("SealPIR/")
-        .include("deps/SEAL/SEAL/")
+        .include("sealpir/")
+        .include("deps/SEAL_2.3.1/SEAL/")
         .flag("-Wno-unknown-pragmas")
         .flag("-Wno-sign-compare")
         .flag("-Wno-unused-parameter")
-        .flag("-std=c++11")
+        .flag("-std=c++17")
         .flag("-fopenmp")
         .pic(true)
         .cpp(true)
         .compile("libsealpir.a");
 
-    let link_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
+    // Compile and link SEAL
+    let dst = cmake::Config::new("deps/SEAL_2.3.1/SEAL/")
+//        .define("CMAKE_BUILD_TYPE", "Release")
+        .define("CMAKE_POSITION_INDEPENDENT_CODE", "ON")
+        .build();
 
-    println!("cargo:rustc-link-search={}/deps/SEAL/bin/", link_dir);
+    println!("cargo:rustc-link-search={}/lib/", dst.display());
     println!("cargo:rustc-link-lib=static=seal");
 }
