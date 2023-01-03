@@ -1,5 +1,3 @@
-#![feature(custom_attribute, custom_derive, plugin)]
-
 #[macro_use]
 extern crate criterion;
 extern crate rand;
@@ -9,8 +7,7 @@ extern crate serde;
 extern crate serde_derive;
 
 use criterion::Criterion;
-use rand::ChaChaRng;
-use rand::{RngCore, FromEntropy};
+use rand::{thread_rng, RngCore};
 use sealpir::client::PirClient;
 use sealpir::server::PirServer;
 use std::time::Duration;
@@ -32,7 +29,7 @@ fn setup(c: &mut Criterion) {
         &format!("setup_d{}", DIM),
         |b, &&num| {
             // setup
-            let mut rng = ChaChaRng::from_entropy();
+            let mut rng = thread_rng();
             let mut collection = vec![];
             for _ in 0..num {
                 let mut x = [0u8; SIZE];
@@ -67,7 +64,7 @@ fn expand(c: &mut Criterion) {
         &format!("expand_d{}", DIM),
         |b, &&num| {
             // setup
-            let mut rng = ChaChaRng::from_entropy();
+            let mut rng = thread_rng();
             let mut collection = vec![];
             for _ in 0..num {
                 let mut x = [0u8; SIZE];
@@ -96,7 +93,7 @@ fn reply(c: &mut Criterion) {
         &format!("reply_d{}", DIM),
         |b, &&num| {
             // setup
-            let mut rng = ChaChaRng::from_entropy();
+            let mut rng = thread_rng();
             let mut collection = vec![];
             for _ in 0..num {
                 let mut x = [0u8; SIZE];
@@ -125,7 +122,7 @@ fn decode(c: &mut Criterion) {
         &format!("decode_d{}", DIM),
         |b, &&num| {
             // setup
-            let mut rng = ChaChaRng::from_entropy();
+            let mut rng = thread_rng();
             let mut collection = vec![];
             for _ in 0..num {
                 let mut x = [0u8; SIZE];

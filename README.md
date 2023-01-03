@@ -2,13 +2,13 @@
 
 SealPIR is a research library and should not be used in production systems. SealPIR allows a client to download an element from a database stored by a server without revealing which element was downloaded. SealPIR was introduced in our [paper](https://eprint.iacr.org/2017/1142.pdf).
 
-SealPIR relies on SEAL v2.3.1. The rest of this README assumes that the SEAL v2.3.1 source code is placed in the folder 
-deps/SEAL_2.3.1 within this repository. You can get SEAL v2.3.1 from this [link](http://sealcrypto.org).
+SealPIR relies on SEAL v2.3.1. We have a copy of this old version of SEAL (which is no longer available from the official
+repository) in the deps folder of this repository.
 
 
 # Compiling SealPIR-Rust
 
-SealPIR's Rust wrapper works with [Rust](https://www.rust-lang.org/) nightly (we have tested with Rust 1.30.0). It also depends on the C++ version of SealPIR (included as a submodule) and SEAL (see above). We have tested these versions with g++ 8.1.0.
+SealPIR's Rust wrapper works with [Rust](https://www.rust-lang.org/) stable (we have tested with Rust 1.66). It also depends on the C++ version of SealPIR (included as a submodule). We have tested these versions with gcc/g++ 11.3 (as of 1/3/2023).
 
 To compile SealPIR-Rust just do:
 
