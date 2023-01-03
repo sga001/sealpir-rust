@@ -1,15 +1,16 @@
 [package]
 name = "sealpir"
-version = "0.1.0"
-authors = ["Sebastian Angel <sebs@cs.utexas.edu>"]
+version = "0.1.1"
+authors = ["Sebastian Angel <sga001@cis.upenn.edu>"]
+edition = "2021"
 
 [build-dependencies]
-gcc = "0.3.54"
-cmake = "0.1.33"
+cc = "1.0"
+cmake = "0.1.49"
 
 [dependencies]
-libc = "0.2.42"
-rand = "0.5.4"
+libc = "0.2.139"
+rand = "0.8.5"
 serde = "1.0.70"
 serde_derive = "1.0.70"
 

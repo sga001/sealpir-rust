@@ -1,8 +1,8 @@
-extern crate gcc;
-extern crate cmake;
+use cc;
+use cmake;
 
 fn main() {
-    gcc::Build::new()
+    cc::Build::new()
         .file("sealpir/pir.cpp")
         .file("sealpir/pir_server.cpp")
         .file("sealpir/pir_client.cpp")
