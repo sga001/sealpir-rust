@@ -258,12 +258,11 @@ fn pir_sizes() {
             for logt in &logts {
                 let mut server = PirServer::new(num, size, 2048, *logt, *d);
 
-
                 let client = PirClient::new(num, size, 2048, *logt, *d);
                 let galois = client.get_key();
 
                 server.setup(&collection);
-                server.set_galois_key(&galois, 0);
+                server.set_galois_key(galois, 0);
 
                 let query = client.gen_query(index);
                 let reply = server.gen_reply(&query, 0);
@@ -282,7 +281,6 @@ fn pir_sizes() {
                     *d,
                     reply.reply.len() / 1024
                 );
-
             }
         }
     }
